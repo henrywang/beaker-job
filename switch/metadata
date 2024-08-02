@@ -1,5 +1,5 @@
 [General]
-name=/switch/metadata
+name=switch
 owner=Xiaofeng Wang <xiaofwan@redhat.com>
 description=build bootc image and bootc switch to this image
 license=GPLv2
@@ -7,7 +7,5 @@ confidential=no
 destructive=no
 
 [restraint]
-entry_point=./runtest.sh
-max_time=30m
-no_localwatchdog=true
+entry_point=bash ./runtest.sh
 use_pty=true

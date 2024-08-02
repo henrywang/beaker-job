@@ -19,7 +19,7 @@
         </and>
       </hostRequires>
       <partitions/>
-      <task name="/switch" role="None">
+      <task name="switch" role="None">
         <fetch url="git@github.com:henrywang/beaker-job.git?main#switch"/>
       </task>
       <kickstart>
