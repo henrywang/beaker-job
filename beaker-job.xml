@@ -1,0 +1,50 @@
+<job group='rhel-edge'>
+    <whiteboard>Install fedora-bootc:40 bootc image</whiteboard>
+  <recipeSet>
+    <recipe kernel_options="" kernel_options_post="" ks_meta="" role="None" whiteboard="">
+      <autopick random="false"/>
+      <watchdog panic="None"/>
+      <packages/>
+      <ks_appends/>
+      <repos/>
+      <distroRequires>
+        <and>
+          <distro_name op="=" value="Fedora-40-20240419.n.0"/>
+          <distro_arch op="=" value="x86_64"/>
+        </and>
+      </distroRequires>
+      <hostRequires>
+        <and>
+          <arch op="=" value="x86_64"/>
+        </and>
+      </hostRequires>
+      <partitions/>
+      <task name="/switch" role="None">
+        <fetch url="git@github.com:henrywang/beaker-job.git?main#switch"/>
+      </task>
+      <kickstart>
+        text
+        lang en_US.UTF-8
+        keyboard us
+        timezone --utc Etc/UTC
+
+        selinux --enforcing
+        rootpw --lock --iscrypted locked
+        user --name=admin --groups=wheel --iscrypted --password=$6$1LgwKw9aOoAi/Zy9$Pn3ErY1E8/yEanJ98evqKEW.DZp24HTuqXPJl6GYCm8uuobAmwxLv7rGCvTRZhxtcYdmC0.XnYRSR9Sh6de3p0
+          sshkey --username=admin "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtJv3QKdqQ+0+jJND7bXVq9ux87yyi4qyJk7iOsX2VsgAUuYXpBf337p5yNB3N1kjOwGYSDjvDvS7GuhdatuvJI3/xzcyodbwJp32AT76e9uvUQHTBBGmUvBLzw3nk8ZDNp5d4rt2cZvlhv7lzDSt30DF14ivg5Xp/V0tK0BEfFlvYHuHheDeiSOQRQ392J7TefPQOW+JpxANU4Bxc1aHIettaIqQMWm9r4ZELd8M83IYt5Btp1bPsnfYywQMYqNXyDuhwhcsBTR5kVObP0DwxKZbMNPmA2lBvrX2GMIa+qfvKIW87KooaoPLt7CR7/DKfQ1S492L1wIwNUPUBLsQD xiaofwan@dhcp-8-203.nay.redhat.com"
+
+        network --bootproto=dhcp --device=link --activate --onboot=on
+
+        zerombr
+        clearpart --all --initlabel --disklabel=gpt
+        autopart --nohome --type=plain
+          ostreecontainer --url quay.io/xiaofwan/fedora-bootc-os_replace:beaker
+        reboot
+        %post --log=/var/log/anaconda/post-install.log --erroronfail
+        # no sudo password for admin user
+        echo -e 'admin\tALL=(ALL)\tNOPASSWD: ALL' >> /etc/sudoers
+        %end
+      </kickstart>
+    </recipe>
+  </recipeSet>
+</job>
