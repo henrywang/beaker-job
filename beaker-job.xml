@@ -20,7 +20,7 @@
       </hostRequires>
       <partitions/>
       <task name="switch" role="None">
-          <fetch url="https://github.com/henrywang/beaker-job/archive/refs/tags/v0.0.2.tar.gz#switch"/>
+        <fetch url="https://github.com/henrywang/beaker-job/archive/refs/tags/v0.0.3.tar.gz#switch"/>
       </task>
       <kickstart>
         text
@@ -31,14 +31,14 @@
         selinux --enforcing
         rootpw --lock --iscrypted locked
         user --name=admin --groups=wheel --iscrypted --password=$6$1LgwKw9aOoAi/Zy9$Pn3ErY1E8/yEanJ98evqKEW.DZp24HTuqXPJl6GYCm8uuobAmwxLv7rGCvTRZhxtcYdmC0.XnYRSR9Sh6de3p0
-          sshkey --username=admin "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtJv3QKdqQ+0+jJND7bXVq9ux87yyi4qyJk7iOsX2VsgAUuYXpBf337p5yNB3N1kjOwGYSDjvDvS7GuhdatuvJI3/xzcyodbwJp32AT76e9uvUQHTBBGmUvBLzw3nk8ZDNp5d4rt2cZvlhv7lzDSt30DF14ivg5Xp/V0tK0BEfFlvYHuHheDeiSOQRQ392J7TefPQOW+JpxANU4Bxc1aHIettaIqQMWm9r4ZELd8M83IYt5Btp1bPsnfYywQMYqNXyDuhwhcsBTR5kVObP0DwxKZbMNPmA2lBvrX2GMIa+qfvKIW87KooaoPLt7CR7/DKfQ1S492L1wIwNUPUBLsQD xiaofwan@dhcp-8-203.nay.redhat.com"
+        sshkey --username=admin "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtJv3QKdqQ+0+jJND7bXVq9ux87yyi4qyJk7iOsX2VsgAUuYXpBf337p5yNB3N1kjOwGYSDjvDvS7GuhdatuvJI3/xzcyodbwJp32AT76e9uvUQHTBBGmUvBLzw3nk8ZDNp5d4rt2cZvlhv7lzDSt30DF14ivg5Xp/V0tK0BEfFlvYHuHheDeiSOQRQ392J7TefPQOW+JpxANU4Bxc1aHIettaIqQMWm9r4ZELd8M83IYt5Btp1bPsnfYywQMYqNXyDuhwhcsBTR5kVObP0DwxKZbMNPmA2lBvrX2GMIa+qfvKIW87KooaoPLt7CR7/DKfQ1S492L1wIwNUPUBLsQD xiaofwan@dhcp-8-203.nay.redhat.com"
 
         network --bootproto=dhcp --device=link --activate --onboot=on
 
         zerombr
         clearpart --all --initlabel --disklabel=gpt
         autopart --nohome --type=plain
-          ostreecontainer --url quay.io/xiaofwan/fedora-bootc-os_replace:beaker
+        ostreecontainer --url quay.io/xiaofwan/fedora-bootc-os_replace:beaker
         reboot
         %post --log=/var/log/anaconda/post-install.log --erroronfail
         # no sudo password for admin user
