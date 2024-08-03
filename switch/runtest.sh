@@ -14,7 +14,8 @@ RUN dnf install -y wget && dnf -y clean all
 EOF
 
 podman build --tls-verify=false --retry=5 --retry-delay=10 -t "$LOCAL_IMAGE_NAME" -f "$CONTAINERFILE" .
+podman push "localhost/$LOCAL_IMAGE_NAME" dir:/mnt
 
-bootc switch "localhost/$LOCAL_IMAGE_NAME"
+bootc switch --transport dir /mnt
 
 rstrnt-reboot
