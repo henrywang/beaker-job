@@ -8,4 +8,5 @@ destructive=no
 
 [restraint]
 entry_point=bash ./runtest.sh
+dependencies=podman
 use_pty=true
