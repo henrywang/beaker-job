@@ -20,7 +20,7 @@
       </hostRequires>
       <partitions/>
       <task name="bootc/install" role="None">
-        <fetch url="https://github.com/henrywang/beaker-job/archive/refs/tags/v0.0.4.tar.gz#bootc-install"/>
+        <fetch url="https://github.com/henrywang/beaker-job/archive/refs/tags/v0.0.5.tar.gz#bootc-install"/>
       </task>
     </recipe>
   </recipeSet>

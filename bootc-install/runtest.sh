@@ -20,7 +20,16 @@ else
     # Should upgrade kernel in Containerfile
     tee "$CONTAINERFILE" > /dev/null << EOF
 FROM "$TIER1_IMAGE_URL"
-RUN dnf install -y wget && dnf -y clean all
+ADD http://lab-02.rhts.eng.rdu.redhat.com/beaker/anamon3 /usr/local/sbin/anamon
+RUN chmod 755 /usr/local/sbin/anamon && \
+    tee /etc/yum.repos.d/beaker-harness.repo > /dev/null << REPOEOF
+[beaker-harness]
+name=beaker-harness
+baseurl=http://beaker.engineering.redhat.com/harness/Fedora40/
+enabled=1
+gpgcheck=0
+REPOEOF
+RUN dnf install -y restraint && dnf -y clean all
 EOF
 
     podman build --tls-verify=false --retry=5 --retry-delay=10 -t "$LOCAL_IMAGE_NAME" -f "$CONTAINERFILE" .
