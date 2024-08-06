@@ -1,0 +1,11 @@
+[General]
+name=bootc/install
+owner=Xiaofeng Wang <xiaofwan@redhat.com>
+description=build bootc image and bootc install to deploy this image
+license=GPLv2
+confidential=no
+destructive=no
+
+[restraint]
+entry_point=bash ./runtest.sh
+use_pty=true
