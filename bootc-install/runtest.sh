@@ -46,8 +46,8 @@ EOF
         -v /dev:/dev \
         -v /var/lib/containers:/var/lib/containers \
         --security-opt label=type:unconfined_t \
-        "$LOCAL_IMAGE_NAME" \
-        bootc install to-existing-root
+        "localhost/${LOCAL_IMAGE_NAME}" \
+        bootc install to-existing-root --target-transport=containers-storage
 
     rstrnt-reboot
     exit 0
