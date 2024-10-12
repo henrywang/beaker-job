@@ -9,7 +9,7 @@
       <repos/>
       <distroRequires>
         <and>
-          <distro_name op="=" value="Fedora-40-20240419.n.0"/>
+          <distro_name op="=" value="Fedora-40"/>
           <distro_arch op="=" value="x86_64"/>
         </and>
       </distroRequires>
@@ -22,6 +22,7 @@
       <task name="switch" role="None">
         <fetch url="https://github.com/henrywang/beaker-job/archive/refs/tags/v0.0.3.tar.gz#switch"/>
       </task>
+      <!--<reservesys duration="3600"/>-->
       <kickstart>
         text
         lang en_US.UTF-8

@@ -21,6 +21,32 @@ libsemanage.semanage_rename: WARNING: rename(/etc/selinux/targeted/active, /etc/
 ```
 Use [`restraint`](https://restraint.readthedocs.io/en/latest/index.html) to run the beaker test instead of legacy RHTS package or `restraint-rhts`.
 
+Package `audit` is required by restraint `10_avc_check` and `97_audit_rotate` plugins.
+
+```
+use_pty:FALSE /usr/share/restraint/plugins/run_task_plugins /usr/share/restraint/plugins/run_plugins
+Uploading dmesg.log .done
+./10_avc_check: line 31: ausearch: command not found
+Uploading avc.log .done
+use_pty:FALSE /usr/share/restraint/plugins/run_task_plugins /usr/share/restraint/plugins/run_plugins
+Skipping Multihost sync .. SERVERS/CLIENTS roles not set
+./97_audit_rotate: line 15: /var/log/audit/*: No such file or directory
+```
+
 ## Custom kickstart
 
 To deploy bootc image on beaker, `<kickstart>` must be used instead of `<ks_appends>` in beaker job xml. Beaker will append `%packages` to install packages if `<ks_appends>` is configured. `%packages` does not work with bootc image anaconda installation.
+
+If `<kickstart>` used, the `%packages` will not have any package installed.
+
+```
+%packages --ignoremissing
+# Task requirements will be installed by the harness
+%end
+```
+
+## Reserving
+
+`<task name="/distribution/reservesys" role="STANDALONE">` does not work with bootc image because the [`reservsys code`](https://github.com/beaker-project/beaker-core-tasks/blob/master/reservesys/runtest.sh) still uses `restraint-rhts`.
+
+Please use `<reservsys/>` or `<reservesys duration="3600"/>` instead. xref https://beaker-project.org/docs/user-guide/system-reservation.html
