@@ -1,5 +1,5 @@
 [beaker-harness]
 name=beaker-harness
-baseurl=http://beaker.engineering.redhat.com/harness/Fedora40/
+baseurl=http://beaker.engineering.redhat.com/harness/Fedora41/
 enabled=1
 gpgcheck=0

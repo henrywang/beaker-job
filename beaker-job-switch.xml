@@ -9,7 +9,7 @@
       <repos/>
       <distroRequires>
         <and>
-          <distro_name op="=" value="Fedora-40"/>
+          <distro_name op="=" value="Fedora-41-20241009.n.0"/>
           <distro_arch op="=" value="x86_64"/>
         </and>
       </distroRequires>
