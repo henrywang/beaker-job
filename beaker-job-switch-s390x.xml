@@ -1,5 +1,5 @@
 <job>
-    <whiteboard>Install fedora-bootc:41 x86_64 bootc image</whiteboard>
+    <whiteboard>Install fedora-bootc:41 s390x bootc image</whiteboard>
   <recipeSet>
     <recipe kernel_options="" kernel_options_post="" ks_meta="" role="None" whiteboard="">
       <autopick random="false"/>
@@ -10,12 +10,12 @@
       <distroRequires>
         <and>
           <distro_name op="=" value="Fedora-41-20241009.n.0"/>
-          <distro_arch op="=" value="x86_64"/>
+          <distro_arch op="=" value="s390x"/>
         </and>
       </distroRequires>
       <hostRequires>
         <and>
-          <arch op="=" value="x86_64"/>
+          <arch op="=" value="s390x"/>
         </and>
       </hostRequires>
       <partitions/>
@@ -35,8 +35,8 @@
         network --bootproto=dhcp --device=link --activate --onboot=on
 
         zerombr
-        clearpart --all --initlabel --disklabel=gpt
-        autopart --nohome --type=plain
+        clearpart --all --initlabel
+        autopart --nohome --type=lvm
         ostreecontainer --url quay.io/xiaofwan/fedora-bootc-os_replace:beaker
         reboot
       </kickstart>
