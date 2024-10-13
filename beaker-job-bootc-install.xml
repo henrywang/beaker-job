@@ -1,5 +1,5 @@
 <job>
-    <whiteboard>Run bootc install to deploy fedora-bootc:40 bootc image</whiteboard>
+    <whiteboard>Run bootc install to deploy fedora-bootc:41 x86_64 bootc image</whiteboard>
   <recipeSet>
     <recipe kernel_options="" kernel_options_post="" ks_meta="" role="None" whiteboard="">
       <autopick random="false"/>
@@ -9,7 +9,7 @@
       <repos/>
       <distroRequires>
         <and>
-          <distro_name op="=" value="Fedora-40-20240419.n.0"/>
+          <distro_name op="=" value="Fedora-41-20241009.n.0"/>
           <distro_arch op="=" value="x86_64"/>
         </and>
       </distroRequires>
@@ -20,7 +20,7 @@
       </hostRequires>
       <partitions/>
       <task name="bootc/install" role="None">
-        <fetch url="https://github.com/henrywang/beaker-job/archive/refs/tags/v0.0.9.tar.gz#bootc-install"/>
+        <fetch url="https://github.com/henrywang/beaker-job/archive/refs/tags/v0.0.10.tar.gz#bootc-install"/>
       </task>
     </recipe>
   </recipeSet>
