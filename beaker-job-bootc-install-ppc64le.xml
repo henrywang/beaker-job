@@ -1,0 +1,27 @@
+<job>
+    <whiteboard>Run bootc install to deploy fedora-bootc:41 ppc64le bootc image</whiteboard>
+  <recipeSet>
+    <recipe kernel_options="" kernel_options_post="" ks_meta="" role="None" whiteboard="">
+      <autopick random="false"/>
+      <watchdog panic="None"/>
+      <packages/>
+      <ks_appends/>
+      <repos/>
+      <distroRequires>
+        <and>
+          <distro_name op="=" value="Fedora-41-20241009.n.0"/>
+          <distro_arch op="=" value="ppc64le"/>
+        </and>
+      </distroRequires>
+      <hostRequires>
+        <and>
+          <arch op="=" value="ppc64le"/>
+        </and>
+      </hostRequires>
+      <partitions/>
+      <task name="bootc/install" role="None">
+        <fetch url="https://github.com/henrywang/beaker-job/archive/refs/tags/v0.0.10.tar.gz#bootc-install"/>
+      </task>
+    </recipe>
+  </recipeSet>
+</job>
