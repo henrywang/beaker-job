@@ -36,7 +36,7 @@
 
         zerombr
         clearpart --all --initlabel --disklabel=gpt
-        autopart --nohome --type=plain
+        autopart --nohome --type=lvm
         ostreecontainer --url quay.io/xiaofwan/fedora-bootc-os_replace:beaker
         reboot
       </kickstart>
