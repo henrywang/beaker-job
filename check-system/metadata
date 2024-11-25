@@ -1,0 +1,12 @@
+[General]
+name=check-system
+owner=Xiaofeng Wang <xiaofwan@redhat.com>
+description=some bootc system checking
+license=GPLv2
+confidential=no
+destructive=no
+
+[restraint]
+entry_point=bash ./runtest.sh
+environment=RSTRNT_DISABLED=10_avc_check
+use_pty=true
